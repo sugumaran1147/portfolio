@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Secure Login</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #000;
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .login-container {
+      background-color: #111;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(0, 255, 200, 0.2);
+      width: 100%;
+      max-width: 400px;
+    }
+
+    h2 {
+      text-align: center;
+      color: #00ffc3;
+      margin-bottom: 30px;
+    }
+
+    label {
+      display: block;
+      margin: 12px 0 6px;
+      font-size: 14px;
+      color: #ccc;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      background-color: #222;
+      color: #fff;
+      font-size: 16px;
+      margin-bottom: 10px;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background-color: #00ffc3;
+      color: #000;
+      font-weight: bold;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 10px;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #00ddb0;
+    }
+
+    .error {
+      color: #ff4d4d;
+      font-size: 14px;
+      margin-top: 10px;
+      text-align: center;
+    }
+
+    .success {
+      color: #00ff8c;
+      font-size: 14px;
+      margin-top: 10px;
+      text-align: center;
+    }
+
+    /* Hide the user type dropdown */
+    #userType {
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="login-container">
+    <h2>Login</h2>
+
+    <!-- Hidden dropdown with default value -->
+    <label for="userType" style="display: none;">Select User Type</label>
+    <select id="userType">
+      <option value="user" selected>User</option>
+      <option value="admin">Admin</option>
+    </select>
+
+    <label for="username">Username</label>
+    <input type="text" id="username" placeholder="Enter username">
+
+    <label for="password">Password</label>
+    <input type="password" id="password" placeholder="Enter password">
+
+    <button onclick="login()">Login</button>
+
+    <div id="message"></div>
+  </div>
+
+  <script>
+    function login() {
+      const userType = document.getElementById('userType').value;
+      const username = document.getElementById('username').value.trim();
+      const password = document.getElementById('password').value.trim();
+      const message = document.getElementById('message');
+
+      // Clear previous message
+      message.textContent = '';
+      message.className = '';
+
+      // Basic validation
+      if (!username || !password) {
+        message.textContent = 'Please fill in all fields.';
+        message.className = 'error';
+        return;
+      }
+
+      // Simulate secure login request
+      message.textContent = 'Authenticating...';
+      message.className = '';
+
+      setTimeout(() => {
+        // Simulate successful login
+        message.textContent = `Welcome, ${userType}! Login successful.`;
+        message.className = 'success';
+
+        // Optional redirect based on userType
+        // window.location.href = userType === 'admin' ? '/admin-dashboard.html' : '/user-home.html';
+      }, 1000);
+    }
+  </script>
+</body>
+
+</html>
